@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extrastyles %}
+
+    <!-- Sweet Alert -->
+    <link href="{% static 'assets/plugins/sweet-alert2/sweetalert2.min.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="float-right">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-round dropdown-toggle px-3" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="mdi mdi-settings mr-1"></i>Settings
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right"
+                                 aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="page-title">Sales</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title">Sales Form</h4>
+                        <div class="general-label">
+                            <form class="form" method="POST" action="">
+                                {% csrf_token %}
+
+                                {{ m_form }}
+                                <hr>
+                                {{ d_form.as_p }}
+
+
+                                <input type="submit" value="Submit" class="btn btn-primary">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+
+        </div><!-- container -->
+    </div>
+{% endblock %}
+
+{% block extrascripts %}
+
+
+    <!-- Sweet-Alert  -->
+    <script src="{% static 'assets/plugins/sweet-alert2/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'assets/pages/sweet-alert.init.js' %}"></script>
+
+{% endblock %}
