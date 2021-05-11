@@ -109,7 +109,7 @@ class SaleDTL(models.Model):
         return self.product.name
 
 
-class PurchaseMST(models.Model):
+class SaleRetMST(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     date = models.DateField()
     desc = models.CharField(max_length=200, blank=True, null=True)
@@ -122,13 +122,61 @@ class PurchaseMST(models.Model):
     def __str__(self):
         return self.customer.name
 
-    # This retrive details of voucher
-    # def get_sale(self):
-    #     return self.saledtl_set.all()
+
+class SaleRetDTL(models.Model):
+    mst = models.ForeignKey(SaleRetMST, on_delete=models.RESTRICT)
+    product = models.ForeignKey(Product, on_delete=models.RESTRICT)
+    desc = models.CharField(max_length=200, blank=True, null=True)
+    rate = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    disc = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    qty = models.IntegerField()
+
+    def __str__(self):
+        return self.product.name
+
+
+class PurchaseMST(models.Model):
+    vendor = models.ForeignKey(Vendor, on_delete=models.RESTRICT)
+    date = models.DateField()
+    desc = models.CharField(max_length=200, blank=True, null=True)
+    disc = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    created_by = models.CharField(max_length=20, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_by = models.CharField(max_length=20, null=True, blank=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.vendor.name
 
 
 class PurchaseDTL(models.Model):
-    mst = models.ForeignKey(SaleMST, on_delete=models.RESTRICT)
+    mst = models.ForeignKey(PurchaseMST, on_delete=models.RESTRICT)
+    product = models.ForeignKey(Product, on_delete=models.RESTRICT)
+    desc = models.CharField(max_length=200, blank=True, null=True)
+    rate = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    disc = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    qty = models.IntegerField()
+
+    def __str__(self):
+        return self.product.name
+
+
+class PurchaseRetMST(models.Model):
+    vendor = models.ForeignKey(Vendor, on_delete=models.RESTRICT)
+    date = models.DateField()
+    desc = models.CharField(max_length=200, blank=True, null=True)
+    disc = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    created_by = models.CharField(max_length=20, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_by = models.CharField(max_length=20, null=True, blank=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.vendor.name
+
+
+class PurchaseRetDTL(models.Model):
+    mst = models.ForeignKey(PurchaseRetMST, on_delete=models.RESTRICT)
     product = models.ForeignKey(Product, on_delete=models.RESTRICT)
     desc = models.CharField(max_length=200, blank=True, null=True)
     rate = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)

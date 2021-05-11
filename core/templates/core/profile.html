@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="page-title">Sales</h4>
+                    <h4 class="page-title">{{ temp_name }}</h4>
                 </div>
             </div>
         </div>
@@ -40,9 +40,9 @@
             <div class="col-md-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">Sales Form</h4>
+                        <h4 class="mt-0 header-title">{{ temp_name }} Form</h4>
                         <div class="general-label">
-                            <form class="form" method="POST" action="" novalidate>
+                            <form class="form" method="POST" action="">
                                 {% csrf_token %}
                                 {{ form.management_form }}
                                 {{ form.non_field_errors }}
@@ -54,66 +54,50 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-1">
-                                        <label for="{{ form.vendor.id_for_label }}"
-                                               class="col-form-label">{{ form.vendor.label }}</label>
+                                        <label for="{{ form.name.id_for_label }}"
+                                               class="col-form-label">{{ form.name.label }}</label>
                                     </div>
-                                    <div class="col-md-5">
-                                        {{ form.vendor.errors }}
-                                        {{ form.vendor }}
-                                    </div>
-                                    <div class="col-md-1">
-                                        <label for="{{ form.date.id_for_label }}"
-                                               class="col-form-label">{{ form.date.label }}</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        {{ form.date.errors }}
-                                        {{ form.date }}
+                                    <div class="col-md-11">
+                                        {{ form.name.errors }}
+                                        {{ form.name }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-1">
-                                        <label for="{{ form.desc.id_for_label }}"
-                                               class="col-form-label">{{ form.desc.label }}</label>
+                                        <label for="{{ form.phone.id_for_label }}"
+                                               class="col-form-label">{{ form.phone.label }}</label>
                                     </div>
                                     <div class="col-md-5">
-                                        {{ form.desc.errors }}
-                                        {{ form.desc }}
+                                        {{ form.phone.errors }}
+                                        {{ form.phone }}
                                     </div>
                                     <div class="col-md-1">
-                                        <label for="{{ form.disc.id_for_label }}"
-                                               class="col-form-label">{{ form.disc.label }}</label>
+                                        <label for="{{ form.email.id_for_label }}"
+                                               class="col-form-label">{{ form.email.label }}</label>
                                     </div>
                                     <div class="col-md-5">
-                                        {{ form.disc.errors }}
-                                        {{ form.disc }}
+                                        {{ form.email.errors }}
+                                        {{ form.email }}
                                     </div>
                                 </div>
-                                <hr>
-                                <table class="table table-bordered">
-                                    {{ formset.management_form }}
-                                    {{ formset.non_field_errors }}
-
-                                    {% for hidden_field in formset.hidden_fields %}
-                                        {{ hidden_field.errors }}
-                                        {{ hidden_field }}
-                                    {% endfor %}
-
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Narration</th>
-                                        <th>Quantity</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr>
-                                        {% for form in formset.forms %}
-                                        <td>{{ form.product }}</td>
-                                        <td>{{ form.desc }}</td>
-                                        <td>{{ form.qty }}</td>
-                                        <td><a href="javascript:void(0)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> <a href="javascript:void(0)" class="btn btn-primary"><i class="fas fa-plus"></i></a></td>
-                                        {% endfor %}
-                                    </tr>
-                                </table>
-
+                                <div class="form-group row">
+                                    <div class="col-md-1">
+                                        <label for="{{ form.city.id_for_label }}"
+                                               class="col-form-label">{{ form.city.label }}</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        {{ form.city.errors }}
+                                        {{ form.city }}
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label for="{{ form.address.id_for_label }}"
+                                               class="col-form-label">{{ form.address.label }}</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        {{ form.address.errors }}
+                                        {{ form.address }}
+                                    </div>
+                                </div>
                                 <hr>
                                 <input type="submit" class="btn btn-dark">
                             </form>
